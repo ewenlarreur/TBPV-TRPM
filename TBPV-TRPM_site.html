@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap">
+    <link href="https://db.onlinewebfonts.com/c/7e39d05fff188430a1cb860db9b38881?family=PP+Mori+SemiBold" rel="stylesheet" type="text/css"/>
+    <link rel="icon" type="image/vnd.icon" href="moka-favicon.ico">
+    <title>TBPV TRPM - Moka Boka</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Anonymous Pro', monospace;
+        }
+        
+        body {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
+        position: relative;
+        }
+
+        .main-content {
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+        width: 100%;
+        align-items: center;
+        }
+
+        
+        .left-column {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .center-column {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .right-column {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .video-container {
+            width: 100%;
+            max-width: 950px;
+            height: auto;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        video {
+            width: 100%;
+            display: block;
+        }
+        
+        .logo-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FDFEB0;
+            width: 160px;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 4px 4px #FDFEB0;
+            cursor: pointer;
+        }
+        
+        .logo {
+            margin-top: 2px;
+            margin-left: 1px;
+            width: 110px;
+            height: auto;
+        }
+        
+        .date-container {
+            border: 1px solid #FF7138;
+            padding: 10px 15px;
+            color: #FF7138;
+            font-size: 16px;
+        }
+        
+        .subscribe-btn {
+            border: 1px solid #FF7138;
+            padding: 10px 15px;
+            color: #FF7138;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            z-index: 1;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: #FF7138;
+            color: white;
+            transition: .2s ease-out;
+        }
+
+        .newsletter-modal {
+            display: none;
+            background-color: white;
+            color: #FF7138;
+            padding: 20px;
+            z-index: 100;
+            border: 1px solid #FF7138;
+            width: 300px;
+            
+        }
+
+        .newsletter-modal input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 5px;
+            font-family: 'Anonymous Pro', monospace;
+            border: 1px solid black;
+            border-radius: 2px;
+        }
+
+        .newsletter-modal h3 {
+            font-family: "PP Mori SemiBold";
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .newsletter-modal button {
+            background-color: black;
+            border: 1px solid black;
+            color: white;
+            padding: 8px 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-family: 'Anonymous Pro', monospace;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-modal button:active {
+            background-color: white;
+            color: black;
+            border: 1px solid #FF7138;
+        }
+
+        .newsletter-modal p {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            justify-content: flex-start;
+            padding-left: 0;
+        }
+
+        .newsletter-modal input[type="checkbox"] {
+            margin-right: 5px;
+            width: auto;
+            margin-left: 0;
+        }
+
+        .newsletter-modal label {
+            font-family: "PP Mori SemiBold";
+            color: #333;
+            font-size: 10px;
+            display: inline;
+            text-align: left;
+        }
+
+        footer {
+        width: 100%;
+        padding: 15px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 10px;
+        color: #333;
+        position: absolute; 
+        bottom: 0;
+        left: 0;
+        }
+        
+        .copyright {
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .footer-link {
+            color: #333;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-link:hover {
+            color: #FF7138;
+        }
+
+        /* Media query pour les formats verticaux/mobiles */
+        @media only screen and (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 2fr 1fr;
+                gap: 30px;
+                padding: 30px 20px;
+                justify-items: center;
+
+                
+            }
+            
+            .left-column, .right-column {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .video-container {
+                max-width: 100%;
+            }
+            
+            .logo-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .logo {
+                width: 80px;
+            }
+            
+            .newsletter-modal {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                max-width: 300px;
+            }
+        }
+        
+        /* Media query pour les très petits écrans */
+        @media only screen and (max-width: 480px) {
+            .main-content {
+                gap: 20px;
+                padding: 20px 15px;
+                grid-template-columns: 1fr;
+                grid-template-rows: 3fr 4fr 3fr;
+            }
+
+            .left-column, .right-column {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .logo-container {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .logo {
+                width: 70px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="left-column">
+            <div class="date-container">?? / ?? / 2025</div>
+        </div>
+        
+        <div class="center-column">
+            <div class="video-container">
+                <video autoplay loop muted>
+                    <source src="vid_vhs_site_moka.mp4" type="video/mp4">
+                </video>
+                
+                <div class="logo-container" id="logoContainer">
+                    <div class="logo">
+                        <img src="logo-texture.png" alt="TBPV-TRPM Logo" class="logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-column">
+            <div class="subscribe-btn" id="subscribeBtn">Newsletter</div>
+            
+            <div class="newsletter-modal" id="newsletterModal">
+                <h3>Abonne-toi pour être prévenue.</h3>
+                <input type="email" id="emailInput" placeholder="Email" required>
+                <p>
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <label for="consent" id="consentLabel">J'accepte de recevoir des emails de la part de Moka Boka.</label>
+                </p>
+                <button type="submit" id="submitBtn">S'inscrire</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="copyright">
+            © 2025 MOKA BOKA. Tous droits réservés.
+        </div>
+        <div class="footer-links">
+            <a href="Politique de confidentialité.html" class="footer-link">Politique de confidentialité</a>
+            <a href="Mentions-légales.html" class="footer-link">Mentions légales</a>
+        </div>
+    </footer>
+
+    <script>
+        const subscribeBtn = document.getElementById('subscribeBtn');
+        const modal = document.getElementById('newsletterModal');
+        const logoContainer = document.getElementById('logoContainer');
+        const submitBtn = document.getElementById('submitBtn');
+        const consentCheckbox = document.getElementById('consent');
+        const consentLabel = document.getElementById('consentLabel');
+        const emailInput = document.getElementById('emailInput');
+        
+        // Variable pour suivre l'état de la modal
+        let isModalOpen = false;
+
+        subscribeBtn.addEventListener('click', function () {
+            // Cacher le bouton et afficher la modal à sa place
+            subscribeBtn.style.display = 'none';
+            modal.style.display = 'block';
+            isModalOpen = true;
+        });
+
+        // Cliquer sur le logo ferme la modal
+        logoContainer.addEventListener('click', function () {
+            if (isModalOpen) {
+                closeModal();
+            }
+        });
+
+        function closeModal() {
+            modal.style.display = 'none';
+            subscribeBtn.style.display = 'block';
+            isModalOpen = false;
+            // Réinitialiser l'état visuel des éléments
+            consentLabel.style.color = '';
+            emailInput.style.borderColor = '';
+        }
+
+        submitBtn.addEventListener('click', function(event) {
+            let hasError = false;
+            
+            // Vérification de l'email
+            if (!emailInput.validity.valid || emailInput.value.trim() === '') {
+                emailInput.style.borderColor = '#ff3850';
+                hasError = true;
+            } else {
+                emailInput.style.borderColor = '';
+            }
+            
+            // Vérification de la case à cocher
+            if (!consentCheckbox.checked) {
+                consentLabel.style.color = '#ff3850';
+                hasError = true;
+            } else {
+                consentLabel.style.color = '';
+            }
+            
+            if (hasError) {
+                event.preventDefault(); // Empêcher la soumission du formulaire
+            } else {
+                // Si pas d'erreur, on pourrait soumettre le formulaire ici
+                // Puis cacher la modal et réafficher le bouton
+                closeModal();
+                // Ici, vous pourriez ajouter un traitement AJAX pour soumettre le formulaire
+            }
+        });
+
+        // Réinitialiser la couleur du champ email quand l'utilisateur modifie sa valeur
+        emailInput.addEventListener('input', function() {
+            if (this.validity.valid && this.value.trim() !== '') {
+                this.style.borderColor = '';
+            }
+        });
+
+        // Réinitialiser la couleur quand l'utilisateur coche la case
+        consentCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                consentLabel.style.color = '';
+            }
+        });
+    </script>
+</body>
+</html>
